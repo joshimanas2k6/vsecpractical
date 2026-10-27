@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Records</title>
+<style>
+body { text-align: center; font-family: Arial; }
+table { margin: 20px auto; border-collapse: collapse; }
+td, th { border: 1px solid black; padding: 8px; }
+</style>
+</head>
+<body>
+
+<h2>Student Marks</h2>
+
+<input id="name" placeholder="Name">
+<input id="roll" placeholder="Roll No">
+<input id="m1" type="number" placeholder="Marks 1">
+<input id="m2" type="number" placeholder="Marks 2">
+<button onclick="add()">Add</button>
+
+<table>
+<tr><th>Name</th><th>Roll</th><th>Total</th><th>%</th></tr>
+<tbody id="list"></tbody> 
+</table>  
+
+<h3 id="top">Topper: None</h3>
+<script>
+let topper = 0, topName = "";
+
+function add() {
+    let n = document.getElementById("name").value;
+    let r = document.getElementById("roll").value;
+    let a = Number(document.getElementById("m1").value);
+    let b = Number(document.getElementById("m2").value);
+
+    if (!n || !r || document.getElementById("m1").value === "" ||
+        document.getElementById("m2").value === "" ||
+        a < 0 || a > 100 || b < 0 || b > 100) {
+        alert("Enter valid details and marks (0-100)");
+        return;
+    }
+
+    let total = a + b;
+    let p = total / 2;
+
+    document.getElementById("list").innerHTML +=
+        `<tr><td>${n}</td><td>${r}</td><td>${total}</td><td>${p}%</td></tr>`;
+
+    if (p > topper) {
+        topper = p;
+        topName = n;
+    }
+
+    document.getElementById("top").innerHTML =
+        "Topper: " + topName + " (" + topper + "%)";
+}
+</script>
+
+
+</body>
+</html>
