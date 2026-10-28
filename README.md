@@ -1,2 +1,0 @@
-#practice practical
-# practice-practical
